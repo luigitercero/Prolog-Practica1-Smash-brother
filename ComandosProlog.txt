@@ -9,5 +9,12 @@ pwd
 ### 3. HACER-COMANDO :-> dentro de prolog
 ['/home/migue/ruta/archivo.pl'] .
 ### 4. INFO :-> Se mostraran advertencias
+### 5. ALTERNATIVA
+swipl likes.pl
 
 #########################################
+
+#########################################
+##### SALIR #############################
+#########################################
+halt .
