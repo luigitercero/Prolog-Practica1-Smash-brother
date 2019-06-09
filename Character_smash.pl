@@ -13,6 +13,17 @@ instancia_de(Ness,humano) .
 instancia_de(Captain_Falcon,humano) .
 instancia_de(Jigglypuff,pelota) .
 
+tiene_propiedad_de(Mario,tiene,Narizota) .
+tiene_propiedad_de(Luigi,tiene,Narizota) .
+tiene_propiedad_de(Donkey_Kong,tiene,Manotas) .
+tiene_propiedad_de(Link,tiene,espada) .
+tiene_propiedad_de(Link,tiene,escudo) .
+tiene_propiedad_de(Samus,tiene,traje) .
+tiene_propiedad_de(yoshi,tiene,zapatos) .
+tiene_propiedad_de(Ness,tiene,niño) .
+tiene_propiedad_de(Captain_Falcon,tiene, vehiculo) .
+
+
 subclase_de(Mario,super_mario) .
 subclase_de(Donkey_Kong,donkey_kong) .
 subclase_de(Link,legend_of_zelda) .
@@ -50,3 +61,4 @@ neutral(dispara,es_proyectil) .
 neutral(trueno,es_proyectil) .
 neutral(ike_fire,es_proyectil) .
 neutral(rodar,no_es_proyectil) .
+
