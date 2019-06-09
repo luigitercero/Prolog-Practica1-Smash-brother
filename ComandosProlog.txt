@@ -1,0 +1,13 @@
+########################################
+##### Ejecutar un archivo ##############
+########################################
+
+### 1. HACER-COMANDO :-> en consola
+pwd 
+
+### 2. HACER-ACCION  :-> Copiar la ruta dentro de comillas simples
+### 3. HACER-COMANDO :-> dentro de prolog
+['/home/migue/ruta/archivo.pl'] .
+### 4. INFO :-> Se mostraran advertencias
+
+#########################################
