@@ -1,0 +1,13 @@
+instancia_de(Mario,super_mario) .
+instancia_de(Donkey_Kong,donkey_kong) .
+instancia_de(Link,legend_of_zelda) .
+instancia_de(Samus,Metroid) .
+instancia_de(Dark_Samus,Metroid) .
+instancia_de(Yoshi,Yoshi) .
+instancia_de(Kirby,Kirby) .
+instancia_de(Fox,star_fox) .
+instancia_de(Pikachu,pokemo) .
+instancia_de(Luigi,super_mario) .
+instancia_de(Ness,earth_Boulind) .
+instancia_de(Captain_Falcon,f-zero) .
+instancia_de(Jigglypuff,pokemo) .
