@@ -84,9 +84,9 @@ subclase_de(Ness,earth_boulind) .
 subclase_de(Captain_Falcon,f-zero) .
 subclase_de(Jigglypuff,pokemo) .
 
-poder_de(Mario,neutral,bola_de_fuego)
-poder_de(Donkey_Kong,neutral,super_puño)
-poder_de(Link,neutral,bumerang)
+poder_de(Mario,neutral,bola_de_fuego) .
+poder_de(Donkey_Kong,neutral,super_puño) .
+poder_de(Link,neutral,bumerang) .
 poder_de(Samus,neutral,bola_de_electricidad) .
 poder_de(yoshi,neutral,Convirte_en_huevo) .
 poder_de(Kirby,neutral,traga) .
