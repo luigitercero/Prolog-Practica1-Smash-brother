@@ -1,5 +1,12 @@
 # Prolog-Practica1-Smash-brother
 
+
+##Intalacion 
+``` bash
+sudo apt install gprolog
+sudo apt install swi-prolog-nox
+```
+
 ## inforamtion
 https://www.smashbros.com/en_US/fighter/index.html
 
