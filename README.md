@@ -1,7 +1,7 @@
 # Prolog-Practica1-Smash-brother
 
 
-##Intalacion 
+## Intalacion 
 ``` bash
 sudo apt install gprolog
 sudo apt install swi-prolog-nox
