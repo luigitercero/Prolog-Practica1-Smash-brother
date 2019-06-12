@@ -42,6 +42,7 @@ tiene_propiedad(humano,tiene,piernas) .
 tiene_propiedad(humano,tiene,brazos) .
 tiene_propiedad(humano,tiene,pelo) .
 tiene_propiedad(humano,tiene,nariz) .
+tiene_propiedad(humano,notiene,dinero) .
 
 tiene_propiedad(metroid,tiene,piernas) .
 tiene_propiedad(metroid,tiene,brazos) .
@@ -112,6 +113,7 @@ tiene_propiedad(ness,notiene,escudo) .
 tiene_propiedad(ness,notiene,traje) .
 
 incompatible(tiene(X),notiene(X)).
+incompatibleg(notiene(X),tiene(X)).
 
 poder_de(mario,neutral,bola_de_fuego) .
 poder_de(donkey_kong,neutral,super_puño) .
@@ -193,24 +195,10 @@ Prop =.. [Fun,Arg].
 propiedadd(Obj,Prop):- 
 propiedadd(Obj,Prop,Prio),
 \+ incomp(Obj,Prop,Prio).
-
+%%%%%%%%%%% CONSULTA NO 10. %%%%%%%%%%%%%%% muestra quienes tienen una propiedad de un poder neutral de cada objeto
 incomp(Obj,Prop,Prio):- 
 incompatible(Prop,Propp),
 propiedadd(Obj,Propp,Priop),
 Priop =< Prio.
-
-
-%%%%%%%%%%% CONSULTA NO 10. %%%%%%%%%%%%%%% muestra quienes tienen una propiedad de un poder neutral de cada objeto
-
-
-propiedadm(Obj,Prop):- 
-propiedadm(Obj,Prop,Prio),
-\+ incomm(Obj,Prop,Prio).
-
-incomm(Obj,Prop,Prio):- 
-incompatible(Prop,Propp),
-propiedadm(Obj,Propp,Priop),
-Priop >= Prio.
-
 
 
