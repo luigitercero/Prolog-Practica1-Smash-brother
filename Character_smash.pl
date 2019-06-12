@@ -201,4 +201,3 @@ incompatible(Prop,Propp),
 propiedadd(Obj,Propp,Priop),
 Priop =< Prio.
 
-

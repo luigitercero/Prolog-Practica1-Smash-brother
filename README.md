@@ -43,6 +43,8 @@ es(X,Y) .
 **al precionar espacio para hacer la consulta debe precionar ";"  y luego enter para mostrar los demas atributos**
 
 
-
-
+## Fuciones dot
+````
+dot -Tpng dia.pl > output.png
+````
 
