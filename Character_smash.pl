@@ -13,6 +13,50 @@ instancia_de(ness,humano) .
 instancia_de(captain_falcon,humano) .
 instancia_de(jigglypuff,pelota) .
 
+instancia_de(mario,super_mario) .
+instancia_de(donkey_kong,donkey_kong) .
+instancia_de(link,legend_of_zelda) .
+instancia_de(samus,metroid) .
+instancia_de(dark_samus,metroid) .
+instancia_de(yoshi,yoshi) .
+instancia_de(kirby,kirby) .
+instancia_de(fox,star_fox) .
+instancia_de(pikachu,pokemon) .
+instancia_de(luigi,super_mario) .
+instancia_de(ness,earth_boulind) .
+instancia_de(captain_falcon,f-zero) .
+instancia_de(jigglypuff,pokemon) .
+
+subclase_de(super_mario,smash) .
+subclase_de(donkey_kong,smash) .
+subclase_de(smash,legend_of_zelda) .
+subclase_de(metroid,smash) .
+subclase_de(smash,yoshi) .
+subclase_de(smash,kirby) .
+subclase_de(smash,pokemon) .
+subclase_de(smash,earth_boulind) .
+subclase_de(smash,f-zero) .
+
+
+tiene_propiedad(humano,tiene,piernas) .
+tiene_propiedad(humano,tiene,brazos) .
+tiene_propiedad(humano,tiene,pelo) .
+tiene_propiedad(humano,tiene,nariz) .
+
+tiene_propiedad(metroid,tiene,piernas) .
+tiene_propiedad(metroid,tiene,brazos) .
+tiene_propiedad(metroid,tiene,pelo) .
+tiene_propiedad(metroid,tiene,nariz) .
+tiene_propiedad(metroid,tiene,otro_planeta) .
+
+tiene_propiedad(dinosaurio,tiene,piernas) .
+tiene_propiedad(dinosaurio,tiene,reptiles) .
+
+tiene_propiedad(zorro,tiene,pelos) .
+
+tiene_propiedad(pelota,tiene,redonda) .
+tiene_propiedad(pokemon,tiene,pokebolas) .
+
 tiene_propiedad(mario,tiene,narizota) .
 tiene_propiedad(luigi,tiene,narizota) .
 tiene_propiedad(donkey_kong,tiene,manotas) .
@@ -69,24 +113,6 @@ tiene_propiedad(ness,notiene,traje) .
 
 incompatible(tiene(X),notiene(X)).
 
-
-subclase_de(mario,super_mario) .
-subclase_de(donkey_kong,donkey_kong) .
-subclase_de(link,legend_of_zelda) .
-subclase_de(samus,metroid) .
-subclase_de(dark_samus,metroid) .
-subclase_de(yoshi,yoshi) .
-subclase_de(kirby,kirby) .
-subclase_de(fox,star_fox) .
-subclase_de(pikachu,pokemon) .
-subclase_de(luigi,super_mario) .
-subclase_de(ness,earth_boulind) .
-subclase_de(captain_falcon,f-zero) .
-subclase_de(jigglypuff,pokemon) .
-
-
-
-
 poder_de(mario,neutral,bola_de_fuego) .
 poder_de(donkey_kong,neutral,super_puño) .
 poder_de(link,neutral,bumerang) .
@@ -111,16 +137,80 @@ neutral(trueno,es_proyectil) .
 neutral(ike_fire,es_proyectil) .
 neutral(rodar,no_es_proyectil) .
 
+%%%%%%%%%%% CONSULTA NO 1. %%%%%%%%%%%%%%% esta consulta muestra a que clase pertenece cada objeto
 es(Clase,Obj):- instancia_de(Obj,Clase).
+
+%%%%%%%%%%% CONSULTA NO 2. %%%%%%%%%%%%%%% esta ccosulta muestra a que clases y subclases pertenece cada objetos
 es(Clase,Obj):- instancia_de(Obj,Clasep),
                 subc(Clasep,Clase).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%% CONSULTA NO 3. %%%%%%%%%%%%%%% muestra la subclase
 subc(C1,C2):- subclase_de(C1,C2).
+%%%%%%%%%%% CONSULTA NO 4. %%%%%%%%%%%%%%% muestra las clases de las subclases
 subc(C1,C2):- subclase_de(C1,C3),
               subc(C3,C2).
-propiedad(Obj,Prop):-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%% CONSULTA NO 5. %%%%%%%%%%%%%%% muestra las propiedades de las clases de un objeto
+
+propiedad(Obj,Prop):- es(Clase,Obj),
 tiene_propiedad(Clase,Fun,Arg),
 Prop =.. [Fun,Arg].
+
+%%%%%%%%%%% CONSULTA NO 6. %%%%%%%%%%%%%%% muestra los poderes de un objeto
+hace(Obj,Lanza):-poder_de(Obj,Ty,Act),
+    neutral(Act,Proye) ,
+Lanza =.. [Ty,Act,Proye] .
+
+%%%%%%%%%%% CONSULTA NO 7. %%%%%%%%%%%%%%% envia la clase y muestra las propieadades que tiene los objetos de la clase
+caract(Clase,Pro):-es(Clase,Obj),
+  tiene_propiedad(Obj,Fun,Prop) ,
+Pro =.. [Obj,Fun,Prop].
+
+%%%%%%%%%%% CONSULTA NO 8. %%%%%%%%%%%%%%% muestra quienes tienen una propiedad de un poder neutral de cada objeto
+tipopoder(Form,Out):-neutral(Poder,Form),
+  poder_de(Obj,Estado,Poder) ,
+Out =.. [Obj,Poder,Estado].
+
+%%%%%%%%%%% CONSULTA NO 9. %%%%%%%%%%%%%%% muestra quienes tienen una propiedad de un poder neutral de cada objeto
+
+esd(Clase,Obj,0):- 
+  instancia_de(Obj,Clase).
+esd(Clase,Obj,Prio):- 
+  instancia_de(Obj,Clasep),
+  subcnd(Clasep,Clase,Prio).
+
+subcnd(C1,C2,1):- subclase_de(C1,C2). 
+subcn(C1,C2,N):- subclase_de(C1,C3),
+subcnd(C3,C2,M), 
+N is M+1.
+
+propiedadd(Obj,Prop,Prio):-esd(Clase,Obj,Prio),
+tiene_propiedad(Clase,Fun,Arg),
+Prop =.. [Fun,Arg].
+
+propiedadd(Obj,Prop):- 
+propiedadd(Obj,Prop,Prio),
+\+ incomp(Obj,Prop,Prio).
+
+incomp(Obj,Prop,Prio):- 
+incompatible(Prop,Propp),
+propiedadd(Obj,Propp,Priop),
+Priop =< Prio.
+
+
+%%%%%%%%%%% CONSULTA NO 10. %%%%%%%%%%%%%%% muestra quienes tienen una propiedad de un poder neutral de cada objeto
+
+
+propiedadm(Obj,Prop):- 
+propiedadm(Obj,Prop,Prio),
+\+ incomm(Obj,Prop,Prio).
+
+incomm(Obj,Prop,Prio):- 
+incompatible(Prop,Propp),
+propiedadm(Obj,Propp,Priop),
+Priop >= Prio.
 
 
 
